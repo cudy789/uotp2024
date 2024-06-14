@@ -1,8 +1,8 @@
-/*
- * This program will tests all of the lights, sensors, and motors on the line-following robot
- * to make sure all of the wires are hooked up correctly.
- * 
- */
+// 
+//   This program will tests all of the lights, sensors, and motors on the line-following robot
+//   to make sure all of the wires are hooked up correctly.
+//   
+// test 
 int onboardLedPin = 32;
 int leftBlinkPin = 13;
 int rightBlinkPin = 18;
