@@ -29,7 +29,6 @@ void setup() {
   pinMode(mLeftSpeed, OUTPUT);
   pinMode(mRightDir, OUTPUT);
   pinMode(mRightSpeed, OUTPUT);
-  
 }
 
 void loop() {
@@ -42,6 +41,7 @@ void loop() {
     digitalWrite(rightBlinkPin, HIGH);  
   }
 
+  // Indicator for IR sensors on Pico
   // If either of the IR proximity sensors detect an object, turn the builtin LED on the Pico on
   if (digitalRead(irLeft)){
     digitalWrite(onboardLedPin, HIGH);
@@ -51,12 +51,25 @@ void loop() {
     digitalWrite(onboardLedPin, LOW);
   }
 
-  
-  if (timer < 250){
-    rover_stop();
-  } else if (timer >= 250 && timer < 500){
+  // Turning logic:
+  //If left but not right, turn right
+  if (digitalRead(irLeft) && !digitalRead(irRight)){
+    rover_right();
+  //If not left but right, turn left
+  } else if (!digitalRead(irLeft) && digitalRead(irRight)) {
+    rover_left();
+  //Otherwise drive straight
+  } else {
     rover_staight();
   }
+
+  
+// Old timer driving logic
+//   if (timer < 250){
+//     rover_stop();
+//   } else if (timer >= 250 && timer < 500){
+//     rover_staight();
+//   }
 
 
   if (timer > 1000){
