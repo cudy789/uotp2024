@@ -1,5 +1,6 @@
 //
-// This program will make the line following robot move forwards 
+// Hello world!
+// This program will make the line following robot move forwards
 // for one second, stop for one second, then repeat, forever.
 //
 
