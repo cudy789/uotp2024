@@ -10,10 +10,10 @@ int rightBlinkPin = 18;
 int irLeft = 4;
 int irRight = 5;
 
-int mLeftDir = 9;
-int mLeftSpeed = 10;
-int mRightDir = 11;
-int mRightSpeed = 12;
+int mLeftDir = 6;
+int mLeftSpeed = 7;
+int mRightDir = 8;
+int mRightSpeed = 9;
 
 int timer = 0;
 
