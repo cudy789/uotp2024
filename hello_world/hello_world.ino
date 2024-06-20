@@ -4,8 +4,8 @@
 // for one second, stop for one second, then repeat, forever.
 //
 
-// These are the pins for the motor driver board. There are two pins per wheel, one for the direction, and the 
-// other for speed.
+// These are the pins for the motor driver board. There are two 
+// pins per wheel, one for the direction, and the other for speed.
 int mLeftDir = 9;
 int mLeftSpeed = 10;
 int mRightDir = 11;
@@ -28,18 +28,20 @@ void loop() {
   // 0 is stopped, 255 is full speed, 127 is half speed, etc..
 
   // STOP the motors, doesn't matter which direction
-  digitalWrite(mLeftDir, HIGH);
-  digitalWrite(mRightDir, HIGH);
+  digitalWrite(mLeftDir, LOW);
+  digitalWrite(mRightDir, LOW);
   analogWrite(mLeftSpeed, 0);
   analogWrite(mRightSpeed, 0);
 
+  // Wait for 1000 milliseconds (1 second)
   delay(1000);
 
   // START the motors at 50% speed going forwards
-  digitalWrite(mLeftDir, HIGH);
+  digitalWrite(mLeftDir, LOW);
   digitalWrite(mRightDir, HIGH);
   analogWrite(mLeftSpeed, 127);
   analogWrite(mRightSpeed, 127);
 
+  // Wait for 1000 milliseconds (1 second)
   delay(1000);
 }
