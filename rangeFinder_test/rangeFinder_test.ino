@@ -2,7 +2,7 @@
 //   This program will tests all of the lights, sensors, and motors on the line-following robot
 //   to make sure all of the wires are hooked up correctly.
 //   
-//  *** NOT WORKING YET *** 
+//  *** NOT WORKING YET *** - Sonar takes 3-10ms to measure distance, messes up 
 int onboardLedPin = 32;
 int leftBlinkPin = 13;
 int rightBlinkPin = 18;
@@ -15,8 +15,8 @@ int mLeftSpeed = 7;
 int mRightDir = 8;
 int mRightSpeed = 9;
 
-int trigPin = 1;
-int echoPin = 2;
+int echoPin = 11;
+int trigPin = 12;
 
 int timer = 0;
 
@@ -35,6 +35,8 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);  
   pinMode(echoPin, INPUT); 
+
+  Serial.begin(115200);
 
 }
 
@@ -73,20 +75,11 @@ void loop() {
     rover_staight();
   }
 
-    // Code for HC-SR04 Range Finder
-    int echoDuration = 0;
-    float distance = 0;
-    // Start Measurement
-    digitalWrite(trigPin, LOW);  
-    delayMicroseconds(2);  
-    digitalWrite(trigPin, HIGH);  
-    delayMicroseconds(10);  
-    digitalWrite(trigPin, LOW);
-    // Wait for Echo to come back
-    echoDuration = pulseIn(echoPin,HIGH,100);
-    distance = (echoDuration*.0343)/2; // Duration / Speed of Sound
-    Serial.print("Distance: ");  
-	Serial.println(distance);  
+  // Code for HC-SR04 Range Finder - measuring distance takes 
+  // time, so do it once and save to a variable.
+  int distance = getRange(trigPin, echoPin);  
+  Serial.print("Distance: ");  
+  Serial.println(distance);  
   
 // Old timer driving logic
 //   if (timer < 250){
@@ -132,4 +125,24 @@ void rover_left() {
     digitalWrite(mRightDir, LOW);
     analogWrite(mLeftSpeed, 127);
     analogWrite(mRightSpeed, 127);
+}
+
+
+float getRange(int myTrigPin, int myEchoPin) {
+  // Code for HC-SR04 Range Finder
+  // This function is blocking (meaning it waits for the range 
+  // finder to respond before returning  a distance)
+  int echoDuration = 0;
+  float myDistance = 0;
+  // Start Measurement
+  digitalWrite(myTrigPin, LOW);  
+  delayMicroseconds(2);  
+  digitalWrite(myTrigPin, HIGH);  
+  delayMicroseconds(10);  
+  digitalWrite(myTrigPin, LOW);
+  // Wait for Echo to come back
+  echoDuration = pulseIn(myEchoPin,HIGH,10000);
+  myDistance = (echoDuration*.0343)/2; // Duration / Speed of Sound
+  if(echoDuration==0){myDistance=999;}
+  return myDistance;
 }
