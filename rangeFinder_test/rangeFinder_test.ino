@@ -134,15 +134,18 @@ float getRange(int myTrigPin, int myEchoPin) {
   // finder to respond before returning  a distance)
   int echoDuration = 0;
   float myDistance = 0;
+  
   // Start Measurement
   digitalWrite(myTrigPin, LOW);  
   delayMicroseconds(2);  
-  digitalWrite(myTrigPin, HIGH);  
+  digitalWrite(myTrigPin, HIGH);  // initiate pulse to sensor asking for distance
   delayMicroseconds(10);  
   digitalWrite(myTrigPin, LOW);
+
   // Wait for Echo to come back
-  echoDuration = pulseIn(myEchoPin,HIGH,10000);
-  myDistance = (echoDuration*.0343)/2; // Duration / Speed of Sound
+  echoDuration = pulseIn(myEchoPin,HIGH,10000); // max wait time 10,000 microseconds.
+
+  myDistance = (echoDuration*.0343)/2; // Calculate Distance = Duration / Speed of Sound
   if(echoDuration==0){myDistance=999;}
   return myDistance;
 }
