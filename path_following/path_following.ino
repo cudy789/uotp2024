@@ -71,7 +71,7 @@ void loop() {
     rover_left();
   // Otherwise, drive straight
   } else {
-    rover_staight();
+    rover_straight();
   }
 
   // This timer variable will count up to 1000. When it hits 1000, reset it to 0.
@@ -95,7 +95,7 @@ void rover_stop() {
     analogWrite(mRightSpeed, 0);
 }
 
-void rover_staight() {
+void rover_straight() {
     digitalWrite(mLeftDir, HIGH);
     digitalWrite(mRightDir, HIGH);
     analogWrite(mLeftSpeed, 127);
