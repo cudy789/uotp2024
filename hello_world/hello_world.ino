@@ -23,7 +23,7 @@ void setup() {
 // Everything inside the curly braces ({ ... }) of the loop function runs FOREVER.
 void loop() {
 
-  // Here is our code to make the rover move. First we need to set the direction for each motor. 
+  // Here is our code to make the rover move. First, we set the direction for each motor. 
   // HIGH is forwards, LOW is backwards. Then we set the speed of each motor from 0 - 255. 
   // 0 is stopped, 255 is full speed, 127 is half speed, etc..
 
