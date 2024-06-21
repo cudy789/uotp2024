@@ -1,6 +1,6 @@
 //
 // Hello world!
-// This program will make the line following robot move forwards
+// This program will make the pathfinder robot move forwards
 // for one second, stop for one second, then repeat, forever.
 //
 
