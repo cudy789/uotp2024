@@ -15,10 +15,10 @@ int irRight = 5;
 
 // These are the pins for the motor driver board. There are two pins per wheel, one for the direction, and the 
 // other for speed.
-int mLeftDir = 9;
-int mLeftSpeed = 10;
-int mRightDir = 11;
-int mRightSpeed = 12;
+int mLeftDir = 6;
+int mLeftSpeed = 7;
+int mRightDir = 8;
+int mRightSpeed = 9;
 
 // This variable keeps track of how much time has passed each loop so we can time certain things to happen at 
 // specific times (blinking LEDs, moving motors, etc.).
