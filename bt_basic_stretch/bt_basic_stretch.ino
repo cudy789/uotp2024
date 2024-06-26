@@ -56,7 +56,6 @@ void loop() {
   }
   // Use Timer to make eyes grow brighter for first half second
   if (setAngryEyes==true) {
-
     if (timer < 500){
       angry_brightness = timer/2;
     // then grow dimmer for last half second
