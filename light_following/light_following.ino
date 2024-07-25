@@ -66,28 +66,16 @@ void loop() {
     digitalWrite(onboardLedPin, LOW);
   }
 
-//  // Turning logic:
-//  // If the left IR sensor does not detect the line and the right one does, TURN RIGHT
-//  if (digitalRead(irLeft) && !digitalRead(irRight)){
-//    rover_right();
-//  // If the left IR sensor detects the line but the right one does not, TURN LEFT 
-//  } else if (!digitalRead(irLeft) && digitalRead(irRight)) {
-//    rover_left();
-//  // Otherwise, drive straight
-//  } else {
-//    rover_straight();
-//  }
+  // Print LDR measurements out serial port for debugging purposes
   Serial.print(analogRead(lightLeft)); // prints value to the monitor
   Serial.print(","); // prints value to the monitor
   Serial.println(analogRead(lightRight)); // prints value to the monitor
 
-  // Turning logic:
-  // If the left IR sensor does not detect the line and the right one does, TURN RIGHT
+  // New Light Turning logic:
   if (analogRead(lightLeft) < analogRead(lightRight)){
-    rover_forward_left();
-  // If the left IR sensor detects the line but the right one does not, TURN LEFT 
-  } else {
     rover_forward_right();
+  } else {
+    rover_forward_left();
   }
 
   // This timer variable will count up to 1000. When it hits 1000, reset it to 0.
@@ -135,13 +123,13 @@ void rover_left() {
 void rover_forward_right() {
     digitalWrite(mLeftDir, HIGH);
     digitalWrite(mRightDir, HIGH);
-    analogWrite(mLeftSpeed, 100);
-    analogWrite(mRightSpeed, 180);
+    analogWrite(mLeftSpeed, 180);
+    analogWrite(mRightSpeed, 100);
 }
 
 void rover_forward_left() {
     digitalWrite(mLeftDir, HIGH);
     digitalWrite(mRightDir, HIGH);
-    analogWrite(mLeftSpeed, 180);
-    analogWrite(mRightSpeed, 100);
+    analogWrite(mLeftSpeed, 100);
+    analogWrite(mRightSpeed, 180);
 }
