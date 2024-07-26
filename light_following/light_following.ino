@@ -47,25 +47,6 @@ void setup() {
 
 // Everything inside the curly braces ({ ... }) of the loop function runs FOREVER.
 void loop() {
-  // Blink the left and right LEDs in an alternating sequence every 1 second
-  if (timer < 500){
-    digitalWrite(leftBlinkPin, HIGH);
-    digitalWrite(rightBlinkPin, LOW);
-  } else{
-    digitalWrite(leftBlinkPin, LOW);
-    digitalWrite(rightBlinkPin, HIGH);  
-  }
-
-  // Indicator for IR sensors on Pico
-  // If either of the IR proximity sensors detect an object, turn the builtin LED on the Pico on
-  if (digitalRead(irLeft)){
-    digitalWrite(onboardLedPin, HIGH);
-  } else if (digitalRead(irRight)) {
-    digitalWrite(onboardLedPin, HIGH);
-  } else {
-    digitalWrite(onboardLedPin, LOW);
-  }
-
   // Print LDR measurements out serial port for debugging purposes
   Serial.print(analogRead(lightLeft)); // prints value to the monitor
   Serial.print(","); // prints value to the monitor
